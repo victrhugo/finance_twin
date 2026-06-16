@@ -13,4 +13,4 @@ WORKDIR /app
 COPY --from=build /app/target/finance-twin-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 # Optimize JVM arguments for Render's 512MB RAM limit
-ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-XX:ActiveProcessorCount=1", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:+UseSerialGC", "-Xss256k", "-Xms128m", "-Xmx256m", "-XX:ActiveProcessorCount=1", "-jar", "app.jar"]
